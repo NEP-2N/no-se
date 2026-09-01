@@ -1,4 +1,4 @@
-cp -r /localPC /no-se/
+xcopy /E /I "localPC" "no-se"
 
 cd no-se
 
