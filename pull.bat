@@ -1,5 +1,0 @@
-cd no-se
-
-git fetch
-git reset --hard HEAD
-git merge origin/main
