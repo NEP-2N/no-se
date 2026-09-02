@@ -1,5 +1,90 @@
 import java.util.Random;
 
+class Burbuja extends Thread{
+    private int arreglo[];
+
+    public Burbuja(int arreglo[]){
+        this.arreglo = arreglo;
+    }
+
+    @Override
+    public void run(){
+
+        boolean ordenado = false;
+        int temp;
+        
+        while (!ordenado) {
+            ordenado = true;
+
+            for (int i = 0; i < arreglo.length - 1; i++) {
+                if (arreglo[i] > arreglo[i + 1]) {
+                    ordenado = false;
+                    temp = arreglo[i];
+
+                    arreglo[i] = arreglo[i + 1];
+                    arreglo[i + 1] = temp;
+
+                }
+            }
+        }
+
+    }
+    
+}
+
+class Insercion extends Thread{
+    private int arreglo[];
+
+    public Insercion(int arreglo[]){
+        this.arreglo = arreglo;
+    }
+
+    @Override
+    public void run(){
+
+        boolean ordenado = false;
+        int temp;
+        
+        while (!ordenado) {
+            ordenado = true;
+
+            for (int i = 0; i < arreglo.length - 1; i++) {
+                if (arreglo[i] > arreglo[i + 1]) {
+                    ordenado = false;
+                    temp = arreglo[i + 1];
+
+                    for (int j = i + 1; j > 0; j--) {
+                        arreglo[j] = arreglo[j - 1];
+
+                        if (arreglo[j - 1] < arreglo[j])
+                            break;
+                        if (j == 1)
+                            arreglo[0] = temp;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+class QuickSort extends Thread{
+    private int arreglo[];
+
+    public Insercion(int arreglo[]){
+        this.arreglo = arreglo;
+    }
+
+    @Override
+    public void run(){
+
+        boolean ordenado = false;
+        int temp;
+        
+
+    }
+}
+
 public class Ordenar extends Thread {
     private String algoritmo;
     private int arreglo[];
@@ -42,52 +127,12 @@ public class Ordenar extends Thread {
         switch (algoritmo) {
             case "Burbuja":
 
-                while (!ordenado) {
-                    ordenado = true;
-
-                    for (int i = 0; i < arreglo.length - 1; i++) {
-                        if (arreglo[i] > arreglo[i + 1]) {
-                            ordenado = false;
-                            temp = arreglo[i];
-
-                            arreglo[i] = arreglo[i + 1];
-                            arreglo[i + 1] = temp;
-
-                        }
-                    }
-                }
-
             case "Insercion":
-                while (!ordenado) {
-                    ordenado = true;
-
-                    for (int i = 0; i < arreglo.length - 1; i++) {
-                        if (arreglo[i] > arreglo[i + 1]) {
-                            ordenado = false;
-                            temp = arreglo[i + 1];
-
-                            for (int j = i + 1; j > 0; j--) {
-                                arreglo[j] = arreglo[j - 1];
-
-                                if (arreglo[j - 1] < arreglo[j])
-                                    break;
-                                if (j == 1)
-                                    arreglo[0] = temp;
-                            }
-                        }
-                    }
-                }
 
             case "QuickSort":
                 QuickSort(arreglo, 0, arreglo.length - 1);
 
         }
-
-        // System.out.println(algoritmo + " ha terminado de ordenar los datos: ");
-        // for (int i = 0; i < arreglo.length - 1; i++) {
-        //     System.out.print(arreglo[i] + ", ");
-        // }
-        // System.out.println(arreglo[arreglo.length - 1]);
     }
 
     public static void main(String[] args) {
@@ -101,8 +146,9 @@ public class Ordenar extends Thread {
             for (int j = 0; j < size; j++)
                 arreglo[i][j] = random.nextInt(1000);
 
-        Thread hiloBurbuja = new Thread(new Ordenar("Burbuja", arreglo[0]));
-        Thread hiloInsercion = new Thread(new Ordenar("Insercion", arreglo[1]));
+        Burbuja hiloBurbuja = new Burbuja(arreglo[0]);
+        Insercion hiloInsercion = new Insercion(arreglo[1]);
+
         Thread hiloQuickSort = new Thread(new Ordenar("QuickSort", arreglo[2]));
 
         hiloBurbuja.start();
