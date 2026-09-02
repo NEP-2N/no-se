@@ -10,40 +10,27 @@ public class Ordenar extends Thread {
     }
 
     public static void QuickSort(int arreglo[], int bajo, int alto) {
-        // if (bajo == alto)
-        //     return arreglo;
+        if (bajo >= alto)
+            return;
+        
+        int pivote = arreglo[alto];
+        int a = bajo;
 
-        // int pivote = (alto - bajo) / 2;
+        int temp;
 
-        // return 1;
-
-        if (bajo < alto) {
-            // 1. Elegimos el último elemento como pivote
-            int pivot = arreglo[alto];
-            int i = (bajo - 1);
-
-            // 2. Particionamiento integrado en la misma función
-            for (int j = bajo; j < alto; j++) {
-                if (arreglo[j] <= pivot) {
-                    i++;
-                    // Intercambio (swap)
-                    int temp = arreglo[i];
-                    arreglo[i] = arreglo[j];
-                    arreglo[j] = temp;
-                }
+        for (int i = bajo; i < alto; i++) {
+            if (arreglo[i] <= pivote) {
+                temp = arreglo[a];
+                arreglo[a++] = arreglo[i];
+                arreglo[i] = temp;
             }
-
-            // Colocar el pivote en su posición correcta
-            int temp = arreglo[i + 1];
-            arreglo[i + 1] = arreglo[alto];
-            arreglo[alto] = temp;
-
-            int pi = i + 1; // Índice de partición
-
-            // 3. Llamadas recursivas para ordenar las subpartes
-            QuickSort(arreglo, bajo, pi - 1);
-            QuickSort(arreglo, pi + 1, alto);
         }
+
+        arreglo[alto] = arreglo[a];
+        arreglo[a] = pivote;
+
+        QuickSort(arreglo, bajo, a - 1);
+        QuickSort(arreglo, a + 1, alto);
     }
 
     @Override
@@ -96,45 +83,67 @@ public class Ordenar extends Thread {
 
         }
 
-        System.out.println(algoritmo + " ha terminado de ordenar los datos: ");
-        for (int i = 0; i < arreglo.length - 1; i++) {
-            System.out.print(arreglo[i] + ", ");
-        }
-        System.out.println(arreglo[arreglo.length - 1]);
-
+        // System.out.println(algoritmo + " ha terminado de ordenar los datos: ");
+        // for (int i = 0; i < arreglo.length - 1; i++) {
+        //     System.out.print(arreglo[i] + ", ");
+        // }
+        // System.out.println(arreglo[arreglo.length - 1]);
     }
 
     public static void main(String[] args) {
-        int size = 10;
-        int arreglo[] = new int[size];
+        boolean esperar = false;
+
+        int size = 100;
+        int arreglo[][] = new int[3][size];
         Random random = new Random();
 
-        for (int i = 0; i < size; i++)
-            arreglo[i] = random.nextInt(1000);
+        for(int i=0; i<3; i++)
+            for (int j = 0; j < size; j++)
+                arreglo[i][j] = random.nextInt(1000);
 
-
-        Thread hiloBurbuja = new Thread(new Ordenar("Burbuja", arreglo));
-        Thread hiloInsercion = new Thread(new Ordenar("Insercion", arreglo));
-        Thread hiloQuickSort = new Thread(new Ordenar("QuickSort", arreglo));
+        Thread hiloBurbuja = new Thread(new Ordenar("Burbuja", arreglo[0]));
+        Thread hiloInsercion = new Thread(new Ordenar("Insercion", arreglo[1]));
+        Thread hiloQuickSort = new Thread(new Ordenar("QuickSort", arreglo[2]));
 
         hiloBurbuja.start();
-        try {
-            hiloBurbuja.join();
-        } catch (InterruptedException e) {
-        }
+        if(esperar)try{
+            Thread.sleep(100);
+        }catch(InterruptedException e){}
 
         hiloInsercion.start();
-        try {
-            hiloInsercion.join();
-        } catch (InterruptedException e) {
-        }
-
-
+        if(esperar)try{
+            Thread.sleep(100);
+        }catch(InterruptedException e){}
+        
         hiloQuickSort.start();
-        try {
-            hiloQuickSort.join();
-        } catch (InterruptedException e) {
-        }
+        if(esperar)try{
+            Thread.sleep(100);
+        }catch(InterruptedException e){}
 
+        try {
+            hiloBurbuja.join();
+            hiloInsercion.join();
+            hiloQuickSort.join();
+        } catch (InterruptedException e) {}
+        
+        System.out.println("Burbuja ha terminado de ordenar los datos: ");
+        for (int i = 0; i < arreglo[0].length - 1; i++) {
+            System.out.print(arreglo[0][i] + ", ");
+        }
+        System.out.println(arreglo[0][arreglo[1].length - 1]);
+        
+        
+        System.out.println("Insercion ha terminado de ordenar los datos: ");
+        for (int i = 0; i < arreglo[1].length - 1; i++) {
+            System.out.print(arreglo[1][i] + ", ");
+        }
+        System.out.println(arreglo[1][arreglo[1].length - 1]);
+        
+        
+        System.out.println("Quicksort ha terminado de ordenar los datos: ");
+        for (int i = 0; i < arreglo[2].length - 1; i++) {
+            System.out.print(arreglo[2][i] + ", ");
+        }
+        System.out.println(arreglo[2][arreglo[2].length - 1]);
     }
 }
