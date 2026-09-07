@@ -43,29 +43,20 @@ class Insercion extends Thread {
     @Override
     public void run() {
 
-        boolean ordenado = false;
         int temp;
 
-        while (!ordenado) {
-            ordenado = true;
-
-            for (int i = 0; i < arreglo.length - 1; i++) {
-                if (arreglo[i] > arreglo[i + 1]) {
-                    ordenado = false;
-                    temp = arreglo[i + 1];
-
-                    for (int j = i + 1; j > 0; j--) {
+        for (int i = 0; i < arreglo.length - 1; i++) {
+            if (arreglo[i + 1] < arreglo[i]) {
+                for (int j = i + 1; j > 0; j--) {
+                    if (arreglo[j] < arreglo[j - 1]) {
+                        temp = arreglo[j];
                         arreglo[j] = arreglo[j - 1];
-
-                        if (arreglo[j - 1] < arreglo[j])
-                            break;
-                        if (j == 1)
-                            arreglo[0] = temp;
-                    }
+                        arreglo[j - 1] = temp;
+                    } else
+                        break;
                 }
             }
         }
-
     }
 }
 
@@ -73,16 +64,16 @@ class Insercion extends Thread {
 class QuickSort extends Thread {
     private int arreglo[];
 
-    public static void QuickSort(int arreglo[], int bajo, int alto) {
-        if (bajo >= alto)
+    public static void QuickSort(int arreglo[], int inicio, int fin) {
+        if (inicio >= fin)
             return;
 
-        int pivote = arreglo[alto];
-        int a = bajo;
+        int pivote = arreglo[fin];
+        int a = inicio;
 
         int temp;
 
-        for (int i = bajo; i < alto; i++) {
+        for (int i = inicio; i < fin; i++) {
             if (arreglo[i] <= pivote) {
                 temp = arreglo[a];
                 arreglo[a++] = arreglo[i];
@@ -90,11 +81,11 @@ class QuickSort extends Thread {
             }
         }
 
-        arreglo[alto] = arreglo[a];
+        arreglo[fin] = arreglo[a];
         arreglo[a] = pivote;
 
-        QuickSort(arreglo, bajo, a - 1);
-        QuickSort(arreglo, a + 1, alto);
+        QuickSort(arreglo, inicio, a - 1);
+        QuickSort(arreglo, a + 1, fin);
     }
 
     public QuickSort(int arreglo[]) {
