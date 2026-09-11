@@ -27,25 +27,25 @@ X_test = scaler.transform(X_test)
 print("Datos preparados para ser usados en una RNA con scikit-learn.")
 print("-------------------------------------------------------------------------------------------------------------------------------------------------------")
 
-param_grid = {
-    "hidden_layer_sizes": [(10,), (20,), (10,10), (20,20)],
-    "activation": ["relu", "tanh"],
-    "solver": ["adam", "sgd"],
-    "alpha": [0.0001, 0.001, 0.01],
-    "max_iter": [500, 1000]
-}
-
-
-# Instanciar el modelo base
-rna = MLPClassifier(random_state=42)
-
-# Aplicar GridSearchCV para encontrar la mejor combinacion de hiperparametros
-grid_search = GridSearchCV(rna, param_grid, cv=5, scoring="accuracy", n_jobs=1)
-grid_search.fit(X_train, y_train)
+#   param_grid = {
+#       "hidden_layer_sizes": [(10,), (20,), (10,10), (20,20)],
+#       "activation": ["relu", "tanh"],
+#       "solver": ["adam", "sgd"],
+#       "alpha": [0.0001, 0.001, 0.01],
+#       "max_iter": [500, 1000]
+#   }
+#   
+#   
+#   # Instanciar el modelo base
+#   rna = MLPClassifier(random_state=42)
+#   
+#   # Aplicar GridSearchCV para encontrar la mejor combinacion de hiperparametros
+#   grid_search = GridSearchCV(rna, param_grid, cv=5, scoring="accuracy", n_jobs=1)
+#   grid_search.fit(X_train, y_train)
 
 # Mejor configuracion encontrada
-print(f"Mejores hiperparametros encontrados: {grid_search.best_params_}")
-print(f"Precision en datos de prueba: {grid_search.best_estimator_.score(X_test, y_test)}")
+#   print(f"Mejores hiperparametros encontrados: {grid_search.best_params_}")
+#   print(f"Precision en datos de prueba: {grid_search.best_estimator_.score(X_test, y_test)}")
 
 # Mejores hiperparametros encontrados: {'activation': 'relu', 'alpha': 0.0001, 'hidden_layer_sizes': (20,), 'max_iter': 1000, 'solver': 'adam'}
 # Precision en datos de prueba: 1.0
