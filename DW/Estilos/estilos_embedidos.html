@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejemplos de estilos embedidos</title>
+        <style>
+            body{
+                background:black;
+            }
+            div{
+                border:solid;
+                width:200px;
+                height:60px;
+                overflow:scroll;
+                background:#222222;
+            }
+            h1{
+                text-align:center;
+                color:white;
+                font-size:50px;
+                font-family:Arial;
+            }
+            p{
+                color:white;
+                font-size:20px;
+                font-family:Verdana;
+            }
+            ul{
+                font-size:20px;
+                color:blue;
+            }
+            #formato_con_id{
+                font-size: 50px;
+                color: red;
+            }
+            .formato_con_class{
+                font-size: 25px;
+                color: blue;
+            }
+            .formato_lista{
+                background:white;
+                color:black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1> Ejemplos de embedidos </h1>
+
+        <p>texto</p>
+        <p id="formato_con_id">Formato con id</p>
+        <p class="formato_con_class">Formato con class</p>
+
+        <div>
+            <p>Parrafo dentro del div</p>
+        </div>
+
+        <ul>
+            <li class="formato_lista">Opcion 1</li>
+            <li class="formato_lista">Opcion 2</li>
+            <li>Opcion 3</li>
+            <li>Opcion 4</li>
+        </ul>
+
+    </body>
+</html>
+

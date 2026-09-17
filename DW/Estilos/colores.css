@@ -1,0 +1,134 @@
+body{
+    font-family: Tahoma;
+    text-align:center;
+    background: black;
+    color:white;
+}
+
+.caja{
+    border: solid white 2px;
+    width: 100px;
+    height: 100px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.color_r{
+    background:red;
+}
+
+.color_g{
+    background:green;
+}
+
+.color_b{
+    background:blue;
+}
+
+.color_orange{
+    background:orange;
+}
+
+.color_x{
+    background: dodgerblue;
+}
+
+
+
+.color_r_rgb{
+    background:rgb(255,0,0);
+}
+
+.color_g_rgb{
+    background: rgb(0,105,0);
+}
+
+.color_b_rgb{
+    background: rgb(0,0,255);
+}
+
+.color_orange_rgb{
+    background: rgb(255,153,0);
+}
+
+.color_x_rgb{
+    background: rgb(0,105,255);
+}
+
+
+
+.color_r_alpha{
+    background:rgba(255,0,0,0.5);
+}
+
+.color_g_alpha{
+    background: rgba(0,105,0,0.5);
+    position: relative;
+    top: -72px;
+    right: -50px;
+}
+
+.color_b_alpha{
+    background: rgba(0,0,255,0.5);
+    position: relative;
+    top: -144px;
+    right: -100px;
+}
+
+.color_orange_alpha{
+    background: rgba(255,153,0,0.5);
+    position: relative;
+    top: -216px;
+    right: -150px;
+}
+
+.color_x_alpha{
+    background: rgba(0,105,255,0.5);
+    position: relative;
+    top: -288px;
+    right: -200px;
+}
+
+
+
+.color_r_hex{
+    background:#f00;
+}
+
+.color_g_hex{
+    background: #006900;
+}
+
+.color_b_hex{
+    background: #00f;
+}
+
+.color_orange_hex{
+    background: #ff9900;
+}
+
+.color_x_hex{
+    background: #0069ff
+}
+
+
+
+.color_r_hsl{
+    background:hsl(0,100%,50%);
+}
+
+.color_g_hsl{
+    background:hsl(110,100%,20%);
+}
+
+.color_b_hsl{
+    background: hsl(240,100%,50%);
+}
+
+.color_orange_hsl{
+    background: hsl(35,100%,50%);
+}
+
+.color_x_hsl{
+    background: hsl(215,100%,50%);
+}
