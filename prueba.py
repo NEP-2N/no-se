@@ -9,4 +9,4 @@ plt.show()
 
 
 
-print("eres una grandisima puta mierda github")
+print("eres una grandisima puta mierda github desde latitude")
