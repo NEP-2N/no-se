@@ -7,5 +7,4 @@ y = x
 plt.plot(x,y)
 plt.show()
 
-
-print("bolas")
+print("eres una gran mierda github")
