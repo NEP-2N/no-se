@@ -1,5 +1,3 @@
-git pull
-
-git fetch
+git fetch --force
 git reset --hard
 git clean -fd
