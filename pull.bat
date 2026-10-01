@@ -1,3 +1,2 @@
-git fetch --force
-git reset --hard
-git clean -fd
+git fetch
+git merge
